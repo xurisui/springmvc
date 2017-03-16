@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.cxh.spring.mapper.ItemMapper">
+    
+    <resultMap id="itemResultMap" type="io.cxh.spring.po.Item">
+        <id     column="id"     property="id"       jdbcType="INTEGER"/>
+        <result column="name"   property="name"     jdbcType="VARCHAR"/>
+        <result column="price"  property="price"    jdbcType="FLOAT"/>
+        <result column="pic"    property="pic"      jdbcType="VARCHAR"/>
+        <result column="create_time"    property="createTime" jdbcType="DATE"/>
+        <result column="detail" property="detail"   jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="itemSql">
+        id, name, price, pic, create_time, detail
+    </sql>
+
+    <select id="selectById" parameterType="int" resultMap="itemResultMap">
+        SELECT <include refid="itemSql"/> FROM item WHERE id = #{id}
+    </select>
+
+
+</mapper>
